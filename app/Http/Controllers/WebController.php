@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\MajorCategory;
+use App\Models\Product;
 
 class WebController extends Controller
 {
@@ -14,7 +15,13 @@ class WebController extends Controller
         $categories = Category::all();
  
         $major_categories = MajorCategory::all();
+
+        /*商品の登録日時（created_at）でソートして、新しい順に4つ取得してビューに渡す*/
+        $recently_products = Product::orderBy('created_at', 'desc')->take(4)->get();
+
+        /*おすすめフラグがONの商品を3つ取得してビューに渡す*/
+        $recommend_products = Product::where('recommend_flag', true)->take(3)->get();
  
-        return view('web.index', compact('major_categories', 'categories'));
+        return view('web.index', compact('major_categories', 'categories', 'recently_products', 'recommend_products'));
      }
 }
