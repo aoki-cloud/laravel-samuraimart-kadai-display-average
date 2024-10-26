@@ -38,7 +38,8 @@
                              <p class="samuraimart-product-label mt-2">
                                  {{$product->name}}<br>
                                  @if ($product->reviews()->exists())<!-- 平均評価を表示 -->
-                                 <span class="samuraimart-star-rating" data-rate="{{$product->reviews->avg('score')}}"></span> <!-- 平均評価を表示 -->
+                                 <span class="samuraimart-star-rating" data-rate="{{ round($product->reviews->avg('score') * 2) / 2}}"></span> <!-- 平均評価を表示 -->
+                                 {{ round($product->reviews->avg('score'), 1) }}
                                  @endif
                                  <label>￥{{$product->price}}</label>
                              </p>

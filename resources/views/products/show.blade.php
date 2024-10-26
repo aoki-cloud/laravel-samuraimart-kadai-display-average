@@ -77,7 +77,8 @@
              <hr class="w-100">
              <h3 class="float-left">カスタマーレビュー</h3>
              @if ($product->reviews()->exists())
-             <span class="samuraimart-star-rating" data-rate="{{$product->reviews->avg('score')}}"></span> <!-- 平均評価を表示 -->
+             <span class="samuraimart-star-rating" data-rate="{{ round($product->reviews->avg('score') * 2) / 2}}"></span> <!-- 平均評価を表示 -->
+             {{ round($product->reviews->avg('score'), 1) }}
              @endif
          </div>
  

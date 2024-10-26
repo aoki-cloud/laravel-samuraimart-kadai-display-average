@@ -22,7 +22,10 @@
                      <div class="col-12">
                          <p class="samuraimart-product-label mt-2">
                              {{ $recommend_product->name }}<br>
-                             <span class="samuraimart-star-rating" data-rate="{{$recommend_product->reviews->avg('score')}}"></span> <!-- 平均評価を表示 -->
+                             @if ($recommend_product->reviews()->exists())
+                             <span class="samuraimart-star-rating" data-rate="{{ round($recommend_product->reviews->avg('score') * 2) / 2}}"></span> <!-- 平均評価を表示 -->
+                             {{ round($recommend_product->reviews->avg('score'), 1) }}<br>
+                             @endif
                              <label>￥{{ $recommend_product->price }}</label>
                          </p>
                      </div>
