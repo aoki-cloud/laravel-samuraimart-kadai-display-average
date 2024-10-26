@@ -36,6 +36,9 @@
                          <div class="col-12">
                              <p class="samuraimart-product-label mt-2">
                                  {{$product->name}}<br>
+                                 @if ($product->averageRating !== null)<!-- 平均評価を表示 -->
+                                    <span class="samuraimart-star-rating" data-rate="{{$recommend_product->reviews->avg('score')}}"></span> <!-- 平均評価を表示 -->
+                                 @endif
                                  <label>￥{{$product->price}}</label>
                              </p>
                          </div>

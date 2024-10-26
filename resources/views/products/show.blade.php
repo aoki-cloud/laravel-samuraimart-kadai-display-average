@@ -76,6 +76,9 @@
          <div class="offset-1 col-11">
              <hr class="w-100">
              <h3 class="float-left">カスタマーレビュー</h3>
+             @if ($product->reviews()->exists())
+             <span class="samuraimart-star-rating" data-rate="{{$product->reviews->avg('score')}}"></span> <!-- 平均評価を表示 -->
+             @endif
          </div>
  
          <div class="offset-1 col-10">

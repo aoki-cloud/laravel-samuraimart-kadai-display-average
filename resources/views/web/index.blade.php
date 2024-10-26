@@ -22,6 +22,7 @@
                      <div class="col-12">
                          <p class="samuraimart-product-label mt-2">
                              {{ $recommend_product->name }}<br>
+                             <span class="samuraimart-star-rating" data-rate="{{$recommend_product->reviews->avg('score')}}"></span> <!-- 平均評価を表示 -->
                              <label>￥{{ $recommend_product->price }}</label>
                          </p>
                      </div>
@@ -47,6 +48,12 @@
                          <div class="col-12">
                              <p class="samuraimart-product-label mt-2">
                                  {{ $recently_product->name }}<br>
+                                 @if ($recently_product->reviews()->exists())
+                                 <!--商品のレビューの平均値を2倍したあと四捨五入し、2で割れば平均評価を0.5刻みで算出できる-->
+                                 <span class="samuraimart-star-rating" data-rate="{{ round($recently_product->reviews->avg('score') * 2) / 2 }}"></span>
+                                 <!--ound()関数の第2引数に1を指定し、単純に小数点以下第二位を四捨五入し、テキストによる平均評価は0.1刻みで表示-->
+                                 {{ round($recently_product->reviews->avg('score'), 1) }}<br>
+                                 @endif
                                  <label>￥{{ $recently_product->price }}</label>
                              </p>
                          </div>
