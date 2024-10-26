@@ -20,6 +20,7 @@
              Sort By
              @sortablelink('id', 'ID')
              @sortablelink('price', 'Price')
+             @sortablelink('created_at', 'Created_at')
          </div>
          <div class="container mt-4">
              <div class="row w-100">
@@ -36,8 +37,8 @@
                          <div class="col-12">
                              <p class="samuraimart-product-label mt-2">
                                  {{$product->name}}<br>
-                                 @if ($product->averageRating !== null)<!-- 平均評価を表示 -->
-                                    <span class="samuraimart-star-rating" data-rate="{{$recommend_product->reviews->avg('score')}}"></span> <!-- 平均評価を表示 -->
+                                 @if ($product->reviews()->exists())<!-- 平均評価を表示 -->
+                                 <span class="samuraimart-star-rating" data-rate="{{$product->reviews->avg('score')}}"></span> <!-- 平均評価を表示 -->
                                  @endif
                                  <label>￥{{$product->price}}</label>
                              </p>
